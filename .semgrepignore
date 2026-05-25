@@ -1,0 +1,9 @@
+# Ignore third-party dependencies and build output folders
+node_modules/
+.output/
+.vinxi/
+.nitro/
+dist/
+dist-ssr/
+package-lock.json
+bun.lock

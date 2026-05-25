@@ -51,9 +51,7 @@ function ContactPage() {
             {t("contact.wereHere")}{" "}
             <span className="gradient-text">{t("contact.wheneverNeeded")}</span>
           </h1>
-          <p className="max-w-2xl mx-auto text-muted-foreground">
-            {t("contact.subtitle")}
-          </p>
+          <p className="max-w-2xl mx-auto text-muted-foreground">{t("contact.subtitle")}</p>
         </div>
       </section>
 
@@ -63,9 +61,7 @@ function ContactPage() {
           <Reveal className="lg:col-span-7">
             <div className="rounded-3xl border bg-card p-7 sm:p-10 shadow-elegant">
               <h2 className="text-2xl sm:text-3xl font-bold">{t("contact.bookAppointment")}</h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t("contact.formSubtitle")}
-              </p>
+              <p className="text-sm text-muted-foreground mt-1">{t("contact.formSubtitle")}</p>
               <form onSubmit={onSubmit} className="mt-6 grid sm:grid-cols-2 gap-4">
                 <Field
                   label={t("contact.fields.fullName")}
@@ -103,9 +99,7 @@ function ContactPage() {
                   />
                 </div>
                 <div className="sm:col-span-2 flex items-center justify-between gap-4 flex-wrap">
-                  <p className="text-xs text-muted-foreground">
-                    {t("contact.consentText")}
-                  </p>
+                  <p className="text-xs text-muted-foreground">{t("contact.consentText")}</p>
                   <button
                     type="submit"
                     className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition hover:-translate-y-0.5"

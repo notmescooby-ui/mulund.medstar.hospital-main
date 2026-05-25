@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import {
   ArrowRight,
   Award,
@@ -22,11 +23,11 @@ export const Route = createFileRoute("/about")({
         content:
           "Learn about Medstar Multispeciality Hospital and ICU — our story, founder, vision, mission and patient-first approach in Mulund West, Mumbai.",
       },
-      { property: "og:title", content: "About Medstar Multispeciality Hospital and ICU" },
+      { property: "og:title", content: "About Medstar Hospital" },
       {
         property: "og:description",
         content:
-          "Our story, vision, mission and commitment to patient-first multispeciality care in Mumbai.",
+          "Our story, vision, mission and commitment to patient-first care in Mulund West, Mumbai.",
       },
     ],
   }),
@@ -34,28 +35,26 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="overflow-x-hidden">
       <section className="bg-hero">
         <div className="container-px mx-auto max-w-7xl py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-center">
           <Reveal className="lg:col-span-7 space-y-5">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-primary">
-              About Us
+              {t("about.aboutUs")}
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-              A hospital built on <span className="gradient-text">trust & technology</span>.
+              {t("about.title")} <span className="gradient-text">{t("about.titleGradient")}</span>.
             </h1>
-            <p className="text-muted-foreground max-w-2xl">
-              Medstar Multispeciality Hospital and ICU is a modern healthcare institution in Mulund
-              West, Mumbai. We blend advanced clinical expertise with warm, personalised care — for
-              every age, every stage, every story.
-            </p>
+            <p className="text-muted-foreground max-w-2xl">{t("about.description")}</p>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-5">
             <div className="rounded-3xl overflow-hidden shadow-elegant">
               <img
                 src={doctorImg}
-                alt="Medstar specialist"
+                alt={t("about.imgAltSpecialist")}
                 loading="lazy"
                 className="w-full h-[400px] object-cover"
                 width={1200}
@@ -71,18 +70,18 @@ function AboutPage() {
           {[
             {
               icon: Sparkles,
-              title: "Our Vision",
-              body: "To be Mumbai's most trusted neighbourhood multispeciality hospital — accessible, expert and deeply compassionate.",
+              title: t("about.visionTitle"),
+              body: t("about.visionBody"),
             },
             {
               icon: HeartHandshake,
-              title: "Our Mission",
-              body: "Deliver patient-first healthcare with modern technology, ethical practice and genuine human care, every single day.",
+              title: t("about.missionTitle"),
+              body: t("about.missionBody"),
             },
             {
               icon: ShieldCheck,
-              title: "Our Promise",
-              body: "Transparent pricing, cashless insurance, and clinical excellence you and your family can rely on.",
+              title: t("about.promiseTitle"),
+              body: t("about.promiseBody"),
             },
           ].map((c, i) => (
             <Reveal key={c.title} delay={i * 100}>
@@ -105,7 +104,7 @@ function AboutPage() {
             <div className="relative rounded-3xl overflow-hidden shadow-elegant">
               <img
                 src={icuImg}
-                alt="ICU service at Medstar"
+                alt={t("about.imgAltIcu")}
                 loading="lazy"
                 className="w-full h-[440px] object-cover"
                 width={1600}
@@ -116,39 +115,17 @@ function AboutPage() {
           </Reveal>
           <Reveal delay={120} className="lg:col-span-7 space-y-5">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">
-              Our ICU Service
+              {t("about.icuTitle")}
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold">Built by clinicians, for patients.</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Medstar Multispeciality Hospital and ICU offers advanced critical care services
-              through its modern 10-bed Intensive Care Unit, designed to provide comprehensive
-              treatment and continuous monitoring for critically ill patients. Equipped with
-              advanced ventilator support systems, cardiac monitors, emergency response equipment,
-              and modern ICU infrastructure, our facility ensures immediate and effective medical
-              attention at all times.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Our dedicated team of experienced critical care specialists, doctors, nurses, and
-              support staff work round-the-clock to deliver compassionate, patient-focused care
-              while maintaining the highest standards of safety, hygiene, and medical excellence.
-              The ICU is designed to handle a wide range of emergency and critical medical
-              conditions with rapid response and personalized treatment plans tailored to each
-              patient’s needs.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              At Medstar, we understand that critical care is not only about advanced technology but
-              also about emotional support, trust, and compassionate healthcare. Our ICU environment
-              is maintained to provide comfort, cleanliness, and reassurance for both patients and
-              their families during challenging times. With 24×7 emergency support, advanced
-              monitoring systems, and a commitment to excellence, Medstar Multispeciality Hospital
-              and ICU continues to provide reliable, life-saving critical care services for the
-              Mulund community and beyond.
-            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold">{t("about.icuHeading")}</h2>
+            <p className="text-muted-foreground leading-relaxed">{t("about.icuBody1")}</p>
+            <p className="text-muted-foreground leading-relaxed">{t("about.icuBody2")}</p>
+            <p className="text-muted-foreground leading-relaxed">{t("about.icuBody3")}</p>
             <div className="grid sm:grid-cols-3 gap-4 pt-4">
               {[
-                { icon: Users, label: "Patient-first" },
-                { icon: Award, label: "Ethical practice" },
-                { icon: Stethoscope, label: "Expert clinicians" },
+                { icon: Users, label: t("about.icuLabelPatientFirst") },
+                { icon: Award, label: t("about.icuLabelEthical") },
+                { icon: Stethoscope, label: t("about.icuLabelExpert") },
               ].map((b) => (
                 <div
                   key={b.label}
@@ -169,32 +146,20 @@ function AboutPage() {
           <div className="grid lg:grid-cols-12 gap-10 items-center">
             <Reveal className="lg:col-span-7 space-y-5">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">
-                Who We Are
+                {t("about.whoWeAre")}
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold">
-                Compassionate care, <span className="gradient-text">close to home</span>.
+                {t("about.compassionateCare")}{" "}
+                <span className="gradient-text">{t("about.closeToHome")}</span>.
               </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Medstar Multispeciality Hospital and ICU is a modern healthcare center located in
-                Mulund West, Mumbai, dedicated to providing compassionate, reliable, and advanced
-                medical care. With a patient-first approach and a commitment to excellence, Medstar
-                offers comprehensive multispeciality services including Orthopaedics, Oncology,
-                Cardiology, Neurology, Ophthalmology, General Surgery, ICU and Emergency Care, and
-                many more.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Equipped with experienced medical professionals, advanced technology, and
-                well-designed critical care facilities, the hospital focuses on delivering trusted
-                healthcare solutions with warmth, comfort, and professionalism. At Medstar, the
-                vision is to create a healthier community through quality treatment, personalized
-                attention, and accessible healthcare for every patient.
-              </p>
+              <p className="text-muted-foreground leading-relaxed">{t("about.whoWeAreBody1")}</p>
+              <p className="text-muted-foreground leading-relaxed">{t("about.whoWeAreBody2")}</p>
             </Reveal>
             <Reveal delay={120} className="lg:col-span-5">
               <div className="relative rounded-3xl overflow-hidden shadow-elegant">
                 <img
                   src={hospitalImg}
-                  alt="Medstar Hospital patient care"
+                  alt={t("about.imgAltCare")}
                   loading="lazy"
                   className="w-full h-[440px] object-cover"
                   width={800}
@@ -217,22 +182,20 @@ function AboutPage() {
             }}
           />
           <div className="relative space-y-5">
-            <h2 className="text-3xl sm:text-4xl font-bold">Care, when you need it most.</h2>
-            <p className="opacity-90 max-w-xl mx-auto">
-              Whether it's a routine consultation or a critical emergency — we're ready to help.
-            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold">{t("about.careTitle")}</h2>
+            <p className="opacity-90 max-w-xl mx-auto">{t("about.careSubtitle")}</p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-2xl font-semibold shadow-soft hover:scale-105 transition"
               >
-                Book Appointment <ArrowRight className="size-4" />
+                {t("about.bookAppointment")} <ArrowRight className="size-4" />
               </Link>
               <Link
                 to="/services"
                 className="inline-flex items-center gap-2 glass text-primary-foreground px-6 py-3 rounded-2xl font-semibold hover:bg-white/20 transition"
               >
-                View Services
+                {t("about.viewServices")}
               </Link>
             </div>
           </div>
