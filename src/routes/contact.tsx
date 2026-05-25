@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Mail, MapPin, MessageCircle, Phone, Send, Siren } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -24,6 +25,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const { t } = useTranslation();
   const [sent, setSent] = useState(false);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,14 +45,14 @@ function ContactPage() {
       <section className="bg-hero">
         <div className="container-px mx-auto max-w-7xl py-16 lg:py-24 text-center space-y-5">
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-primary">
-            Get in touch
+            {t("contact.getInTouch")}
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-            We're here, <span className="gradient-text">whenever you need us</span>.
+            {t("contact.wereHere")}{" "}
+            <span className="gradient-text">{t("contact.wheneverNeeded")}</span>
           </h1>
           <p className="max-w-2xl mx-auto text-muted-foreground">
-            Book an appointment, ask a question or reach our 24×7 emergency team — we'd love to
-            help.
+            {t("contact.subtitle")}
           </p>
         </div>
       </section>
@@ -60,46 +62,60 @@ function ContactPage() {
           {/* Form */}
           <Reveal className="lg:col-span-7">
             <div className="rounded-3xl border bg-card p-7 sm:p-10 shadow-elegant">
-              <h2 className="text-2xl sm:text-3xl font-bold">Book an appointment</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold">{t("contact.bookAppointment")}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Fill in the details and we'll connect with you on WhatsApp shortly.
+                {t("contact.formSubtitle")}
               </p>
               <form onSubmit={onSubmit} className="mt-6 grid sm:grid-cols-2 gap-4">
-                <Field label="Full name" name="name" required placeholder="Your name" />
                 <Field
-                  label="Phone"
+                  label={t("contact.fields.fullName")}
+                  name="name"
+                  required
+                  placeholder={t("contact.placeholders.fullName")}
+                />
+                <Field
+                  label={t("contact.fields.phone")}
                   name="phone"
                   required
-                  placeholder="10-digit mobile"
+                  placeholder={t("contact.placeholders.phone")}
                   type="tel"
                 />
-                <Field label="Email" name="email" type="email" placeholder="you@example.com" />
-                <Field label="Department" name="department" placeholder="e.g. Cardiology" />
+                <Field
+                  label={t("contact.fields.email")}
+                  name="email"
+                  type="email"
+                  placeholder={t("contact.placeholders.email")}
+                />
+                <Field
+                  label={t("contact.fields.department")}
+                  name="department"
+                  placeholder={t("contact.placeholders.department")}
+                />
                 <div className="sm:col-span-2 space-y-1.5">
                   <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Message
+                    {t("contact.fields.message")}
                   </label>
                   <textarea
                     name="message"
                     rows={4}
-                    placeholder="Tell us briefly how we can help..."
+                    placeholder={t("contact.placeholders.message")}
                     className="w-full rounded-xl border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                   />
                 </div>
                 <div className="sm:col-span-2 flex items-center justify-between gap-4 flex-wrap">
                   <p className="text-xs text-muted-foreground">
-                    By submitting, you agree to be contacted by Medstar.
+                    {t("contact.consentText")}
                   </p>
                   <button
                     type="submit"
                     className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition hover:-translate-y-0.5"
                   >
-                    <Send className="size-4" /> Send Request
+                    <Send className="size-4" /> {t("contact.sendRequest")}
                   </button>
                 </div>
                 {sent && (
                   <p className="sm:col-span-2 text-sm text-primary font-medium">
-                    Thanks! Opening WhatsApp to confirm your request…
+                    {t("contact.openingWhatsApp")}
                   </p>
                 )}
               </form>
@@ -117,23 +133,35 @@ function ContactPage() {
                   <Siren className="size-6" />
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-wider opacity-90">24×7 Emergency</div>
+                  <div className="text-xs uppercase tracking-wider opacity-90">
+                    {t("contact.emergency247")}
+                  </div>
                   <div className="text-xl font-bold">{SITE.phone}</div>
                 </div>
               </div>
             </a>
-            <InfoCard icon={Phone} title="Call us" body={SITE.phone} href={SITE.phoneLink} />
+            <InfoCard
+              icon={Phone}
+              title={t("contact.callUs")}
+              body={SITE.phone}
+              href={SITE.phoneLink}
+            />
             <InfoCard
               icon={MessageCircle}
-              title="WhatsApp"
-              body="Chat with our team"
+              title={t("contact.whatsapp")}
+              body={t("contact.chatWithTeam")}
               href={SITE.whatsapp}
               external
             />
-            <InfoCard icon={Mail} title="Email" body={SITE.email} href={`mailto:${SITE.email}`} />
+            <InfoCard
+              icon={Mail}
+              title={t("contact.email")}
+              body={SITE.email}
+              href={`mailto:${SITE.email}`}
+            />
             <InfoCard
               icon={MapPin}
-              title="Visit us"
+              title={t("contact.visitUs")}
               body={SITE.address}
               href={SITE.mapsLink}
               external
