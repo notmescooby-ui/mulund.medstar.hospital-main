@@ -8,7 +8,7 @@ import {
   Stethoscope,
   Users,
 } from "lucide-react";
-import doctorImg from "@/assets/triple sharing .jpg";
+import doctorImg from "@/assets/deluxe-gallery.png";
 import icuImg from "@/assets/iccu 2.jpg";
 import hospitalImg from "@/assets/opd 1.jpg";
 import { Reveal } from "@/components/Reveal";
