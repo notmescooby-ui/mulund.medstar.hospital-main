@@ -9,7 +9,7 @@ import {
   Stethoscope,
   Users,
 } from "lucide-react";
-import doctorImg from "@/assets/deluxe-gallery.png";
+import deluxeRoomImg from "@/assets/deluxe-gallery.png";
 import icuImg from "@/assets/iccu 2.jpg";
 import hospitalImg from "@/assets/opd 1.jpg";
 import { Reveal } from "@/components/Reveal";
@@ -53,8 +53,8 @@ function AboutPage() {
           <Reveal delay={120} className="lg:col-span-5">
             <div className="rounded-3xl overflow-hidden shadow-elegant">
               <img
-                src={doctorImg}
-                alt={t("about.imgAltSpecialist")}
+                src={deluxeRoomImg}
+                alt={t("about.imgAltDeluxe")}
                 loading="lazy"
                 className="w-full h-[400px] object-cover"
                 width={1200}

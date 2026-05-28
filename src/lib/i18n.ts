@@ -43,6 +43,7 @@ const resources = {
         description:
           "Medstar Multispeciality Hospital and ICU is a modern healthcare institution in Mulund West, Mumbai. We blend advanced clinical expertise with warm, personalised care — for every age, every stage, every story.",
         imgAltSpecialist: "Medstar specialist",
+        imgAltDeluxe: "Medstar deluxe room",
         visionTitle: "Our Vision",
         visionBody:
           "To be Mumbai's most trusted neighbourhood multispeciality hospital — accessible, expert and deeply compassionate.",
