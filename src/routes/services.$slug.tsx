@@ -132,7 +132,7 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
         {/* Book button */}
         {slug === "ophthalmology" ? (
           <a
-            href="https://mulundeyecare.com"
+            href="https://mulundeyecare.com/contact"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-600
@@ -254,12 +254,23 @@ function DepartmentPage() {
             </div>
             <p className="text-muted-foreground max-w-2xl leading-relaxed">{dept.description}</p>
             <div className="flex flex-wrap gap-3">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition"
-              >
-                Book Consultation <ArrowRight className="size-4" />
-              </Link>
+              {dept.slug === "ophthalmology" ? (
+                <a
+                  href="https://mulundeyecare.com/contact"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition"
+                >
+                  Book Consultation <ArrowRight className="size-4" />
+                </a>
+              ) : (
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition"
+                >
+                  Book Consultation <ArrowRight className="size-4" />
+                </Link>
+              )}
               <a
                 href={SITE.phoneLink}
                 className="inline-flex items-center gap-2 glass text-foreground px-6 py-3 rounded-2xl font-semibold shadow-card"
