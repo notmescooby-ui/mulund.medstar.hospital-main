@@ -1,20 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
-  ArrowRight,
-  ShieldCheck,
-  Clock,
-  Award,
-  HeartHandshake,
-  Sparkles,
-  Siren,
-  Star,
-  ChevronRight,
+  ArrowRight, ShieldCheck, Clock, Siren, Phone, Quote, Star,
+  Activity, CalendarCheck, Stethoscope, MapPin, ChevronRight, CheckCircle2, Plus,
 } from "lucide-react";
 import heroImg from "@/assets/WhatsApp Image 2026-05-12 at 6.50.14 AM.jpeg";
 import icuImg from "@/assets/icu-facility.jpg";
 import doctorImg from "@/assets/reception.jpg";
 import founderImg from "@/assets/WhatsApp Image 2025-01-06 at 20.30.09_0aea704c.jpg";
-import { DEPARTMENTS, SITE, STATS } from "@/lib/site";
+import { DEPARTMENTS, SITE, STATS, INSURERS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 import { DepartmentIcon } from "@/components/DepartmentIcon";
@@ -23,110 +17,217 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Medstar Multispeciality Hospital and ICU — Mulund West, Mumbai" },
-      {
-        name: "description",
-        content:
-          "Trusted multispeciality hospital with 24×7 ICU & emergency care in Mulund West, Mumbai. Book appointments online with expert specialists.",
-      },
+      { name: "description", content: "Trusted multispeciality hospital with 24×7 ICU & emergency care in Mulund West, Mumbai. Book appointments online with expert specialists." },
     ],
   }),
   component: HomePage,
 });
 
+const TESTIMONIALS = [
+  { name: "Priya S.", text: "The doctors and ICU team were exceptional during my father's recovery. Calm, kind and incredibly skilled.", role: "Patient family" },
+  { name: "Rahul M.", text: "From admission to discharge, every step felt organised and reassuring. Truly patient-first care.", role: "Orthopaedic patient" },
+  { name: "Anjali K.", text: "Modern facilities and warm staff. The pediatric team made my daughter feel completely at ease.", role: "Pediatric care" },
+];
+
+const STEPS = [
+  { n: "01", title: "Book online", body: "Pick a department and slot in under a minute.", icon: CalendarCheck },
+  { n: "02", title: "Meet your specialist", body: "Detailed consultation, diagnostics on the same floor.", icon: Stethoscope },
+  { n: "03", title: "Recover with care", body: "Day-care, surgical or ICU pathways, fully guided.", icon: Activity },
+];
+
+function EKG() {
+  return (
+    <svg viewBox="0 0 600 80" className="w-full h-12" preserveAspectRatio="none" aria-hidden>
+      <defs>
+        <linearGradient id="ekg" x1="0" x2="1">
+          <stop offset="0%" stopColor="oklch(0.68 0.13 190)" />
+          <stop offset="50%" stopColor="oklch(0.5 0.2 260)" />
+          <stop offset="100%" stopColor="oklch(0.64 0.22 25)" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M0 40 L120 40 L140 40 L150 20 L160 60 L170 10 L180 70 L200 40 L320 40 L340 25 L355 55 L370 15 L385 65 L400 40 L600 40"
+        fill="none" stroke="url(#ekg)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+        style={{ strokeDasharray: 1400, strokeDashoffset: 1400, animation: "shimmer 2.4s ease-out forwards, fade-in 0.4s ease" }}
+      />
+    </svg>
+  );
+}
+
 function HomePage() {
+  const [activeDept, setActiveDept] = useState(DEPARTMENTS[0].slug);
+  const dept = DEPARTMENTS.find(d => d.slug === activeDept) ?? DEPARTMENTS[0];
+
   return (
     <div className="overflow-x-hidden">
-      {/* HERO */}
-      <section className="relative overflow-hidden">
+      {/* HERO — asymmetric split */}
+      <section className="relative">
         <div className="absolute inset-0 bg-hero" />
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
-            backgroundSize: "32px 32px",
-          }}
-        />
-        <div className="relative container-px mx-auto max-w-7xl pt-10 pb-20 lg:pt-20 lg:pb-32 grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-6 space-y-7 animate-fade-up text-center sm:text-left">
-            <div className="text-[11px] sm:text-[12px] font-semibold tracking-[0.24em] uppercase text-slate-950/90">
-              Medstar Multispeciality Hospital and ICU
+        <div className="absolute inset-0 grid-bg opacity-60" />
+        <div className="absolute -top-24 -right-24 size-[420px] rounded-full bg-primary/15 blur-3xl animate-blob" />
+        <div className="absolute top-40 -left-32 size-[360px] rounded-full blur-3xl animate-blob" style={{ background: "oklch(0.7 0.2 260 / 0.18)", animationDelay: "3s" }} />
+
+        <div className="relative container-px mx-auto max-w-7xl pt-16 pb-20 lg:pt-24 lg:pb-28">
+          <div className="grid lg:grid-cols-12 gap-10 items-start">
+            {/* Left — 7 cols */}
+            <div className="lg:col-span-7 space-y-7">
+              <Reveal>
+                <div className="flex items-center gap-3">
+                  <span className="chip"><span className="size-1.5 rounded-full bg-primary animate-pulse-soft" /> {SITE.tagline}</span>
+                  <span className="chip-red"><Siren className="size-3" /> 24×7 ICU</span>
+                </div>
+              </Reveal>
+              <Reveal delay={80}>
+                <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+                  Compassionate care.<br />
+                  <span className="gradient-text">Modern medicine.</span>
+                </h1>
+              </Reveal>
+              <Reveal delay={160}>
+                <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+                  Medstar Multispeciality Hospital and ICU brings together expert specialists, advanced technology and warm, patient-first care — right in the heart of Mulund West, Mumbai.
+                </p>
+              </Reveal>
+              <Reveal delay={240}>
+                <div className="flex flex-wrap gap-3">
+                  <Link to="/contact" className="group inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3.5 rounded-2xl text-sm font-bold shadow-soft hover:shadow-glow transition-all hover:-translate-y-0.5">
+                    Book Appointment <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                  <a href={SITE.phoneLink} className="inline-flex items-center gap-2 bg-red-gradient text-white px-6 py-3.5 rounded-2xl text-sm font-bold shadow-red hover:-translate-y-0.5 transition-all">
+                    <Phone className="size-4" /> Emergency · {SITE.phone}
+                  </a>
+                </div>
+              </Reveal>
+
+              {/* Live EKG band */}
+              <Reveal delay={320}>
+                <div className="glass rounded-2xl p-4 flex items-center gap-4">
+                  <div className="grid place-items-center size-11 rounded-xl bg-primary-gradient text-white shadow-soft">
+                    <Activity className="size-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[11px] uppercase tracking-widest text-muted-foreground font-bold">Live signal · vitals monitoring</div>
+                    <EKG />
+                  </div>
+                </div>
+              </Reveal>
             </div>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-semibold text-primary shadow-card">
-              <Sparkles className="size-3.5" /> {SITE.tagline}
-            </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.05]">
-              Compassionate care.
-              <br />
-              <span className="gradient-text">Modern medicine.</span>
-            </h1>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto sm:mx-0">
-              Medstar Multispeciality Hospital and ICU brings together expert specialists, advanced
-              technology and warm, patient-first care — right in the heart of Mulund West, Mumbai.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
-              <Link
-                to="/contact"
-                className="group inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3.5 rounded-2xl text-sm font-semibold shadow-soft hover:shadow-glow transition-all hover:-translate-y-0.5"
-              >
-                Book Appointment{" "}
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                to="/services"
-                className="inline-flex w-full sm:w-auto justify-center items-center gap-2 glass px-6 py-3.5 rounded-2xl text-sm font-semibold text-foreground shadow-card hover:shadow-soft transition"
-              >
-                Explore Services <ChevronRight className="size-4" />
-              </Link>
-            </div>
-            <div className="flex flex-wrap gap-3 pt-4">
-              <span className="inline-flex items-center gap-2 rounded-2xl bg-sky-50/90 px-4 py-2 text-sm font-semibold text-slate-950 shadow-soft">
-                <ShieldCheck className="size-5 text-primary" /> Cashless insurance
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-2xl bg-sky-50/90 px-4 py-2 text-sm font-semibold text-slate-950 shadow-soft">
-                <Clock className="size-5 text-primary" /> 24×7 ICU & Emergency
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-2xl bg-white/90 px-4 py-2 text-sm font-semibold text-slate-700 shadow-card">
-                <Award className="size-5 text-primary" /> 17 specialities
-              </span>
+
+            {/* Right — 5 cols, image + floating stat tiles */}
+            <div className="lg:col-span-5 relative">
+              <Reveal delay={120}>
+                <div className="relative rounded-[2rem] overflow-hidden shadow-elegant border border-white/40">
+                  <img src={heroImg} alt="Modern hospital lobby at Medstar Hospital" className="w-full h-[480px] object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-foreground/10 to-transparent" />
+                  <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 text-white">
+                    <div>
+                      <div className="text-[11px] uppercase tracking-widest opacity-80">Now serving</div>
+                      <div className="font-display text-2xl font-bold">{SITE.shortAddress || "Mulund West, Mumbai"}</div>
+                    </div>
+                    <a href={SITE.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-bold bg-white/95 text-foreground px-3 py-1.5 rounded-full hover:bg-white transition">
+                      Directions <ArrowRight className="size-3" />
+                    </a>
+                  </div>
+                </div>
+              </Reveal>
+
+              <div className="absolute -left-6 top-10 glass rounded-2xl p-3 shadow-soft w-44 animate-float hidden sm:block">
+                <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Happy patients</div>
+                <div className="font-display text-2xl font-extrabold gradient-text"><Counter to={1000} />+</div>
+              </div>
+              <div className="absolute -right-4 -bottom-6 glass rounded-2xl p-3 shadow-soft w-44" style={{ animation: "float 7s ease-in-out infinite", animationDelay: "1.5s" }}>
+                <div className="flex items-center gap-1 mb-0.5">
+                  {[1,2,3,4,5].map(i => <Star key={i} className="size-3 fill-[oklch(0.78_0.16_70)] text-[oklch(0.78_0.16_70)]" />)}
+                </div>
+                <div className="text-[11px] font-semibold">Rated 4.9 · Google reviews</div>
+              </div>
             </div>
           </div>
-          <div className="lg:col-span-6 relative animate-scale-in">
-            <div className="relative rounded-3xl overflow-hidden shadow-elegant">
-              <img
-                src={heroImg}
-                alt="Modern hospital lobby at Medstar Hospital"
-                className="w-full h-[320px] sm:h-[420px] object-cover"
-                width={1920}
-                height={1280}
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-transparent" />
+
+          {/* Stats strip */}
+          <Reveal delay={200}>
+            <div className="mt-16 grid grid-cols-2 sm:grid-cols-5 gap-3">
+              {STATS.map((s, i) => (
+                <div key={s.label} className="tile tile-hover p-4 text-center" style={{ animationDelay: `${i * 60}ms` }}>
+                  <div className="font-display text-2xl sm:text-3xl font-extrabold gradient-text">
+                    <Counter to={s.value} />{s.suffix}
+                  </div>
+                  <div className="text-[11px] uppercase tracking-widest text-muted-foreground font-bold mt-1">{s.label}</div>
+                </div>
+              ))}
             </div>
-            <div className="hidden md:flex absolute -left-4 sm:-left-8 bottom-8 glass rounded-2xl p-4 shadow-elegant w-56 animate-float">
-              <div className="flex items-center gap-3">
-                <div className="grid place-items-center size-11 rounded-xl bg-teal-gradient text-white">
-                  <HeartHandshake className="size-5" />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* MARQUEE — insurance partners */}
+      <section className="border-y bg-white/60 backdrop-blur py-5 overflow-hidden">
+        <div className="container-px mx-auto max-w-7xl flex items-center gap-6">
+          <span className="shrink-0 text-[11px] uppercase tracking-widest font-bold text-muted-foreground">Cashless with</span>
+          <div className="flex-1 overflow-hidden relative" style={{ maskImage: "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)" }}>
+            <div className="flex gap-10 animate-marquee whitespace-nowrap font-display font-bold text-lg text-foreground/70">
+              {[...INSURERS, ...INSURERS, ...INSURERS].map((n, i) => (
+                <span key={i} className="inline-flex items-center gap-2"><Plus className="size-4 text-primary" strokeWidth={3} />{n}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* INTERACTIVE DEPARTMENT EXPLORER */}
+      <section className="container-px mx-auto max-w-7xl py-24">
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <Reveal>
+              <span className="chip mb-4"><Stethoscope className="size-3" /> 17 Specialities</span>
+              <h2 className="font-display text-4xl lg:text-5xl tracking-tight">
+                One hospital.<br /><span className="gradient-text">Every speciality you need.</span>
+              </h2>
+              <p className="mt-4 text-muted-foreground max-w-md">
+                Tap a speciality on the right to preview the team, the treatments and the rooms — then book in a tap.
+              </p>
+              <div className="mt-6 tile p-6 bg-soft">
+                <div className="flex items-center gap-3">
+                  <DepartmentIcon name={dept.icon} className="size-7 text-primary" />
+                  <h3 className="font-display text-xl font-bold">{dept.name}</h3>
                 </div>
-                <div>
-                  <div className="text-xs text-muted-foreground">Patient first</div>
-                  <div className="font-semibold text-sm">Care that listens</div>
-                </div>
+                <p className="text-sm text-muted-foreground mt-2 italic">"{dept.tagline}"</p>
+                <p className="text-sm mt-3 leading-relaxed">{dept.description}</p>
+                <ul className="mt-4 grid grid-cols-1 gap-1.5">
+                  {dept.services.slice(0, 5).map(s => (
+                    <li key={s} className="text-sm flex items-center gap-2"><CheckCircle2 className="size-4 text-primary shrink-0" />{s}</li>
+                  ))}
+                </ul>
+                <Link to="/services/$slug" params={{ slug: dept.slug }} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary hover:gap-3 transition-all">
+                  Explore {dept.name} <ArrowRight className="size-4" />
+                </Link>
               </div>
-            </div>
-            <div
-              className="hidden md:block absolute -right-2 sm:-right-6 bottom-16 glass rounded-2xl p-4 shadow-elegant w-52"
-              style={{ animation: "float 7s ease-in-out infinite", animationDelay: "1s" }}
-            >
-              <div className="flex items-center gap-2 mb-1">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star
-                    key={i}
-                    className="size-3.5 fill-coral text-coral"
-                    style={{ color: "oklch(0.74 0.14 30)" }}
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {DEPARTMENTS.map((d, i) => {
+              const active = d.slug === activeDept;
+              return (
+                <button
+                  key={d.slug}
+                  onMouseEnter={() => setActiveDept(d.slug)}
+                  onFocus={() => setActiveDept(d.slug)}
+                  onClick={() => setActiveDept(d.slug)}
+                  className={`flex flex-col items-center justify-center p-4 rounded-2xl border text-center transition-all ${
+                    active
+                      ? "bg-primary-gradient text-white shadow-soft"
+                      : "bg-card text-foreground hover:bg-accent"
+                  }`}
+                >
+                  <DepartmentIcon
+                    name={d.icon}
+                    className={`size-6 mb-2 ${active ? "text-white" : "text-primary"}`}
                   />
-                ))}
-              </div>
-              <div className="text-xs font-semibold">Treated 1,000+ patients</div>
-            </div>
+                  <span className="text-xs font-semibold">{d.name}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -138,7 +239,7 @@ function HomePage() {
             <div className="rounded-3xl overflow-hidden shadow-elegant">
               <img
                 src={doctorImg}
-                alt="Compassionate Medstar doctor"
+                alt="Compassionate Medstar doctor at reception"
                 loading="lazy"
                 className="w-full h-[520px] object-cover"
                 width={1200}
@@ -203,70 +304,32 @@ function HomePage() {
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="bg-primary-gradient text-primary-foreground py-16 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-        <div className="relative container-px mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-5 gap-8">
-          {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80} className="text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-                <Counter to={s.value} suffix={s.suffix} />
-              </div>
-              <div className="text-xs sm:text-sm opacity-85 mt-2 uppercase tracking-wider">
-                {s.label}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section className="container-px mx-auto max-w-7xl py-20 lg:py-28">
-        <Reveal className="text-center max-w-2xl mx-auto mb-14 space-y-4">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">
-            Our Services
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-            Multispeciality care, <span className="gradient-text">all under one roof</span>.
-          </h2>
-          <p className="text-muted-foreground">
-            From routine consultations to advanced surgeries and intensive care — explore our 16
-            specialist departments.
-          </p>
-        </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {DEPARTMENTS.map((d, i) => (
-            <Reveal key={d.slug} delay={(i % 4) * 80}>
-              <Link
-                to="/services/$slug"
-                params={{ slug: d.slug }}
-                className="group relative block h-full rounded-2xl border bg-card p-6 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-hero opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-                <div className="relative">
-                  <div className="grid place-items-center size-12 rounded-xl bg-accent text-primary group-hover:bg-primary-gradient group-hover:text-primary-foreground transition-all duration-300 mb-4">
-                    <DepartmentIcon name={d.icon} className="size-6" />
+      {/* STEPS — Patient Journey */}
+      <section className="bg-soft py-20">
+        <div className="container-px mx-auto max-w-7xl">
+          <Reveal className="text-center mb-12 space-y-3">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">Patient Journey</span>
+            <h2 className="text-3xl sm:text-4xl font-bold">Your recovery, step by step</h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {STEPS.map((s, i) => (
+              <Reveal key={s.title} delay={i * 100}>
+                <div className="h-full rounded-2xl border bg-card p-6 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all relative overflow-hidden">
+                  <div className="absolute right-4 top-4 font-display text-4xl font-black opacity-10 text-primary">{s.n}</div>
+                  <div className="grid place-items-center size-12 rounded-xl bg-primary-gradient text-primary-foreground shadow-soft mb-4">
+                    <s.icon className="size-5" />
                   </div>
-                  <h3 className="font-semibold text-lg">{d.name}</h3>
-                  <p className="text-xs text-muted-foreground mt-1">{d.tagline}</p>
-                  <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                    Learn more <ArrowRight className="size-3.5" />
-                  </div>
+                  <h3 className="font-semibold text-lg">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{s.body}</p>
                 </div>
-              </Link>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ICU / EMERGENCY BANNER */}
-      <section className="container-px mx-auto max-w-7xl">
+      <section className="container-px mx-auto max-w-7xl pt-20">
         <div className="relative rounded-3xl overflow-hidden shadow-elegant">
           <img
             src={icuImg}
@@ -308,11 +371,38 @@ function HomePage() {
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
+      <section className="bg-soft py-20 mt-20">
+        <div className="container-px mx-auto max-w-7xl">
+          <Reveal className="text-center mb-12 space-y-3">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">Patient Stories</span>
+            <h2 className="text-3xl sm:text-4xl font-bold">What our patients say</h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {TESTIMONIALS.map((t, i) => (
+              <Reveal key={t.name} delay={i * 100}>
+                <div className="h-full rounded-2xl border bg-card p-6 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all relative">
+                  <Quote className="absolute right-6 top-6 size-8 opacity-10 text-primary" />
+                  <div className="flex items-center gap-1 mb-4">
+                    {[1, 2, 3, 4, 5].map(star => <Star key={star} className="size-4 fill-[oklch(0.78_0.16_70)] text-[oklch(0.78_0.16_70)]" />)}
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed italic">"{t.text}"</p>
+                  <div className="mt-6 border-t pt-4">
+                    <div className="font-semibold text-sm">{t.name}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{t.role}</div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FOUNDER'S NOTE */}
       <section className="container-px mx-auto max-w-7xl py-20 lg:py-28">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <Reveal className="order-2 lg:order-1 space-y-6">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100 text-xs font-semibold text-sky-800 shadow-soft">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent text-xs font-semibold text-primary shadow-soft">
               Founder’s Note
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-slate-950">
@@ -353,9 +443,9 @@ function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/10 via-transparent to-transparent" />
               </div>
-              <div className="p-6 sm:p-8 bg-gradient-to-br from-sky-50 via-slate-100 to-white border-t border-sky-100 shadow-soft">
+              <div className="p-6 sm:p-8 bg-gradient-to-br from-accent/20 via-muted to-white border-t border-accent shadow-soft">
                 <div className="text-lg font-semibold text-slate-950">Dr. Shailendra Nanaware</div>
-                <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-sky-100 px-3 py-1 text-sm font-medium text-sky-900 shadow-sm ring-1 ring-sky-200">
+                <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-sm font-medium text-primary shadow-sm ring-1 ring-border">
                   Founder & Ophthalmologist
                 </div>
                 <div className="mt-3 text-sm text-slate-600">

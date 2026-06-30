@@ -8,16 +8,9 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services & Departments — Medstar Hospital" },
-      {
-        name: "description",
-        content:
-          "Explore 16 specialist departments at Medstar — orthopaedics, cardiology, neurology, oncology, ICU, gynaecology, pediatrics and more.",
-      },
+      { name: "description", content: "Explore 16 specialist departments at Medstar — orthopaedics, cardiology, neurology, oncology, ICU, gynaecology, pediatrics and more." },
       { property: "og:title", content: "Medstar Hospital — Specialist Departments" },
-      {
-        property: "og:description",
-        content: "Multispeciality care under one roof in Mulund West, Mumbai.",
-      },
+      { property: "og:description", content: "Multispeciality care under one roof in Mulund West, Mumbai." },
     ],
   }),
   component: ServicesLayout,
@@ -35,16 +28,9 @@ function ServicesIndex() {
     <div className="overflow-x-hidden">
       <section className="bg-hero">
         <div className="container-px mx-auto max-w-7xl py-16 lg:py-24 text-center space-y-5">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-primary">
-            Our Services
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-            Specialist care, <span className="gradient-text">tailored for you</span>.
-          </h1>
-          <p className="max-w-2xl mx-auto text-muted-foreground">
-            16 specialist departments, advanced ICU, and 24×7 emergency — explore our complete range
-            of services.
-          </p>
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-primary">Our Services</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">Specialist care, <span className="gradient-text">tailored for you</span>.</h1>
+          <p className="max-w-2xl mx-auto text-muted-foreground">16 specialist departments, advanced ICU, and 24×7 emergency — explore our complete range of services.</p>
         </div>
       </section>
 
@@ -63,9 +49,7 @@ function ServicesIndex() {
                     <DepartmentIcon name={d.icon} className="size-7" />
                   </div>
                   <h3 className="font-semibold text-xl">{d.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                    {d.description}
-                  </p>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{d.description}</p>
                   <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
                     View department <ArrowRight className="size-4" />
                   </div>

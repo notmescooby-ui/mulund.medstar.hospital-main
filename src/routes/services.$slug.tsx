@@ -44,26 +44,15 @@ export const Route = createFileRoute("/services/$slug")({
   notFoundComponent: () => (
     <div className="container-px mx-auto max-w-3xl py-24 text-center">
       <h1 className="text-3xl font-bold">Department not found</h1>
-      <Link to="/services" className="mt-4 inline-block text-primary font-semibold">
-        Back to all services
-      </Link>
+      <Link to="/services" className="mt-4 inline-block text-primary font-semibold">Back to all services</Link>
     </div>
   ),
 });
 
 const FAQ = [
-  {
-    q: "How do I book a consultation?",
-    a: "You can book by calling us, using WhatsApp, or filling the appointment form on the contact page. Our team confirms your slot within minutes.",
-  },
-  {
-    q: "Do you accept insurance?",
-    a: "Yes — we offer cashless treatment with leading insurers including Mediassist, Tata AIG, Bajaj Allianz, ACKO, Care Health and more.",
-  },
-  {
-    q: "What about emergencies?",
-    a: "Our ICU and Emergency department are open 24×7. For emergencies, call us immediately on 099200 14466.",
-  },
+  { q: "How do I book a consultation?", a: "You can book by calling us, using WhatsApp, or filling the appointment form on the contact page. Our team confirms your slot within minutes." },
+  { q: "Do you accept insurance?", a: "Yes — we offer cashless treatment with leading insurers including Mediassist, Tata AIG, Bajaj Allianz, ACKO, Care Health and more." },
+  { q: "What about emergencies?", a: "Our ICU and Emergency department are open 24×7. For emergencies, call us immediately on 099200 14466." },
 ];
 
 function getInitials(name: string) {
@@ -91,14 +80,14 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
     <div
       className="group relative rounded-2xl bg-card shadow-card overflow-hidden
                  hover:shadow-elegant hover:-translate-y-1 transition-all duration-300
-                 border border-violet-200 hover:border-violet-400"
-      style={{ boxShadow: "0 0 0 1px rgba(139,92,246,0.15), 0 2px 8px rgba(139,92,246,0.08)" }}
+                 border border-teal-200 hover:border-teal-400"
+      style={{ boxShadow: "0 0 0 1px rgba(14,165,164,0.15), 0 2px 8px rgba(14,165,164,0.08)" }}
     >
-      {/* top purple accent bar — always visible, brightens on hover */}
-      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-violet-400 via-purple-500 to-indigo-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl" />
+      {/* top teal accent bar — always visible, brightens on hover */}
+      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-teal-400 via-primary to-blue opacity-60 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl" />
 
-      {/* subtle purple tint background on hover */}
-      <div className="absolute inset-0 bg-gradient-to-b from-violet-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      {/* subtle primary tint background on hover */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       <div className="relative p-6 flex flex-col items-center text-center gap-4">
         {/* Avatar with stethoscope badge */}
@@ -109,15 +98,15 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
                         group-hover:scale-105 transition-transform duration-300`}
           >
             {initials}
-            <span className="absolute inset-0 rounded-2xl ring-2 ring-violet-400/0 group-hover:ring-violet-400/40 transition-all duration-300" />
+            <span className="absolute inset-0 rounded-2xl ring-2 ring-primary/0 group-hover:ring-primary/40 transition-all duration-300" />
           </div>
           {/* Stethoscope badge */}
           <div
             className="absolute -bottom-2 -right-2 grid place-items-center size-7 rounded-full
-                          bg-white border-2 border-violet-200 shadow-sm
-                          group-hover:border-violet-400 group-hover:bg-violet-50 transition-all duration-300"
+                          bg-white border-2 border-teal-200 shadow-sm
+                          group-hover:border-teal-400 group-hover:bg-teal-50 transition-all duration-300"
           >
-            <Stethoscope className="size-3.5 text-violet-500" />
+            <Stethoscope className="size-3.5 text-primary" />
           </div>
         </div>
 
@@ -135,9 +124,9 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
             href="https://mulundeyecare.com/contact"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-600
-                       border border-violet-200 rounded-xl px-4 py-2
-                       hover:bg-violet-600 hover:text-white hover:border-violet-600
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary
+                       border border-primary/20 rounded-xl px-4 py-2
+                       hover:bg-primary hover:text-white hover:border-primary
                        transition-all duration-200 w-full justify-center"
           >
             Book Appointment <ArrowRight className="size-3" />
@@ -145,9 +134,9 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
         ) : (
           <Link
             to="/contact"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-600
-                       border border-violet-200 rounded-xl px-4 py-2
-                       hover:bg-violet-600 hover:text-white hover:border-violet-600
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary
+                       border border-primary/20 rounded-xl px-4 py-2
+                       hover:bg-primary hover:text-white hover:border-primary
                        transition-all duration-200 w-full justify-center"
           >
             Book Appointment <ArrowRight className="size-3" />
@@ -215,11 +204,11 @@ function DepartmentHeroBackground({ dept }: { dept: Department }) {
       <div className="absolute -right-16 top-8 hidden size-80 place-items-center rounded-full border border-primary/10 bg-primary/5 text-primary/10 lg:grid">
         <DepartmentIcon name={dept.icon} className="size-40" />
       </div>
-      <div className="absolute right-24 bottom-10 hidden size-28 place-items-center rounded-3xl border border-violet-200/60 bg-white/45 text-violet-300 shadow-soft backdrop-blur-sm lg:grid">
+      <div className="absolute right-24 bottom-10 hidden size-28 place-items-center rounded-3xl border border-primary/20 bg-white/45 text-primary shadow-soft backdrop-blur-sm lg:grid">
         <DepartmentIcon name={dept.icon} className="size-14" />
       </div>
       <div className="absolute left-8 top-10 size-24 rounded-full border border-primary/10 bg-white/35 blur-sm" />
-      <div className="absolute bottom-8 left-1/3 size-16 rounded-2xl border border-violet-200/50 bg-violet-100/20 rotate-12" />
+      <div className="absolute bottom-8 left-1/3 size-16 rounded-2xl border border-primary/10 bg-primary/5 rotate-12" />
     </div>
   );
 }
@@ -232,17 +221,11 @@ function DepartmentPage() {
 
   return (
     <div className="overflow-x-hidden">
-      {/* Hero */}
       <section className="relative overflow-hidden bg-hero">
         <DepartmentHeroBackground dept={dept} />
         <div className="container-px relative mx-auto max-w-7xl py-16 lg:py-20 grid lg:grid-cols-12 gap-10 items-center">
           <Reveal className="lg:col-span-8 space-y-5">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:gap-2.5 transition-all"
-            >
-              ← All Services
-            </Link>
+            <Link to="/services" className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:gap-2.5 transition-all">← All Services</Link>
             <div className="flex items-center gap-4">
               <div className="grid place-items-center size-16 rounded-2xl bg-primary-gradient text-primary-foreground shadow-glow">
                 <DepartmentIcon name={dept.icon} className="size-8" />
@@ -255,35 +238,22 @@ function DepartmentPage() {
             <p className="text-muted-foreground max-w-2xl leading-relaxed">{dept.description}</p>
             <div className="flex flex-wrap gap-3">
               {dept.slug === "ophthalmology" ? (
-                <a
-                  href="https://mulundeyecare.com/contact"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition"
-                >
+                <a href="https://mulundeyecare.com/contact" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition">
                   Book Consultation <ArrowRight className="size-4" />
                 </a>
               ) : (
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition"
-                >
+                <Link to="/contact" className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition">
                   Book Consultation <ArrowRight className="size-4" />
                 </Link>
               )}
-              <a
-                href={SITE.phoneLink}
-                className="inline-flex items-center gap-2 glass text-foreground px-6 py-3 rounded-2xl font-semibold shadow-card"
-              >
+              <a href={SITE.phoneLink} className="inline-flex items-center gap-2 glass text-foreground px-6 py-3 rounded-2xl font-semibold shadow-card">
                 <Phone className="size-4" /> Call {SITE.phone}
               </a>
             </div>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-4">
             <div className="rounded-3xl glass p-6 shadow-elegant space-y-4">
-              <div className="text-xs uppercase font-semibold text-primary tracking-wider">
-                Why Medstar
-              </div>
+              <div className="text-xs uppercase font-semibold text-primary tracking-wider">Why Medstar</div>
               {dept.highlights.map((h: Department["highlights"][number]) => (
                 <div key={h.title} className="rounded-xl bg-card p-4 border shadow-card">
                   <div className="font-semibold text-sm">{h.title}</div>
@@ -307,8 +277,7 @@ function DepartmentPage() {
                 Meet your <span className="gradient-text">consulting doctors</span>
               </h2>
               <p className="text-muted-foreground max-w-xl mx-auto text-sm">
-                Our {dept.name} team comprises experienced, compassionate specialists committed to
-                your best outcome.
+                Our {dept.name} team comprises experienced, compassionate specialists committed to your best outcome.
               </p>
             </Reveal>
 
@@ -333,9 +302,7 @@ function DepartmentPage() {
       {/* Services Offered */}
       <section className="container-px mx-auto max-w-7xl py-20">
         <Reveal className="space-y-3 mb-10">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">
-            Services Offered
-          </span>
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">Services Offered</span>
           <h2 className="text-3xl sm:text-4xl font-bold">What we treat & offer</h2>
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -345,9 +312,7 @@ function DepartmentPage() {
                 <CheckCircle2 className="size-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <div className="font-semibold text-sm">{s}</div>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Modern protocols and personalised treatment plans by experienced specialists.
-                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">Modern protocols and personalised treatment plans by experienced specialists.</p>
                 </div>
               </div>
             </Reveal>
@@ -359,43 +324,27 @@ function DepartmentPage() {
       <section className="bg-soft py-20">
         <div className="container-px mx-auto max-w-3xl">
           <Reveal className="space-y-3 mb-8 text-center">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">
-              Frequently Asked
-            </span>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">Frequently Asked</span>
             <h2 className="text-3xl sm:text-4xl font-bold">Your questions, answered.</h2>
           </Reveal>
           <div className="space-y-3">
-            {FAQ.map((f, i) => (
-              <FaqItem key={f.q} {...f} index={i} />
-            ))}
+            {FAQ.map((f, i) => <FaqItem key={f.q} {...f} index={i} />)}
           </div>
         </div>
       </section>
 
-      {/* Related Departments */}
+      {/* Related */}
       <section className="container-px mx-auto max-w-7xl py-20">
         <Reveal className="mb-8 flex items-end justify-between">
           <div>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">
-              More Departments
-            </span>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">More Departments</span>
             <h2 className="text-2xl sm:text-3xl font-bold mt-2">Explore related care</h2>
           </div>
-          <Link
-            to="/services"
-            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
-          >
-            View all <ArrowRight className="size-4" />
-          </Link>
+          <Link to="/services" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">View all <ArrowRight className="size-4" /></Link>
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {related.map((d) => (
-            <Link
-              key={d.slug}
-              to="/services/$slug"
-              params={{ slug: d.slug }}
-              className="group rounded-2xl border bg-card p-5 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all"
-            >
+            <Link key={d.slug} to="/services/$slug" params={{ slug: d.slug }} className="group rounded-2xl border bg-card p-5 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all">
               <div className="grid place-items-center size-11 rounded-xl bg-accent text-primary group-hover:bg-primary-gradient group-hover:text-primary-foreground transition-all mb-3">
                 <DepartmentIcon name={d.icon} className="size-5" />
               </div>
@@ -413,18 +362,11 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(index === 0);
   return (
     <div className="rounded-2xl border bg-card shadow-card overflow-hidden">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-4 p-5 text-left"
-      >
+      <button onClick={() => setOpen((v) => !v)} className="w-full flex items-center justify-between gap-4 p-5 text-left">
         <span className="font-semibold text-sm sm:text-base">{q}</span>
-        <ChevronDown
-          className={`size-5 text-primary transition-transform ${open ? "rotate-180" : ""}`}
-        />
+        <ChevronDown className={`size-5 text-primary transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
-      <div
-        className={`grid transition-all duration-300 ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
-      >
+      <div className={`grid transition-all duration-300 ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">
           <p className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">{a}</p>
         </div>
