@@ -51,9 +51,9 @@
   --animate-scale-in: scale-in 0.5s ease-out both;
   --animate-float: float 8s ease-in-out infinite;
   --animate-pulse-soft: pulse-soft 2.6s ease-in-out infinite;
-  --animate-marquee: marquee 45s linear infinite;
+  --animate-marquee: marquee 50s linear infinite;
   --animate-shine: shine 3.5s linear infinite;
-  --animate-orbit: orbit 22s linear infinite;
+  --animate-orbit: orbit 50s linear infinite;
   --animate-pulse-ring: pulse-ring 2.2s ease-out infinite;
 }
 
@@ -281,4 +281,8 @@
   --color-lavender: oklch(0.86 0.07 260);
   --color-coral: oklch(0.7 0.18 35);
   --color-primary-glow: var(--primary-glow);
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

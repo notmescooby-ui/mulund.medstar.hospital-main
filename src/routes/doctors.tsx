@@ -54,6 +54,12 @@ function Doctors() {
     return acc;
   }, []);
 
+  const sortedDocList = [...docList].sort((a, b) => {
+    if (a.name === "Dr. Shailendra Nanaware") return -1;
+    if (b.name === "Dr. Shailendra Nanaware") return 1;
+    return a.tag.localeCompare(b.tag);
+  });
+
   return (
     <div className="overflow-x-hidden">
       {/* Header section */}
@@ -74,7 +80,7 @@ function Doctors() {
       {/* Grid section */}
       <section className="container-px mx-auto max-w-7xl py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {docList.map((d, i) => {
+          {sortedDocList.map((d, i) => {
             const gradient = AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length];
             return (
               <Reveal key={d.name} delay={(i % 4) * 60}>

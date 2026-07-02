@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 import { DepartmentIcon } from "@/components/DepartmentIcon";
 import { SITE, DEPARTMENTS, STATS } from "@/lib/site";
-import heroImg from "@/assets/WhatsApp Image 2026-05-12 at 6.50.14 AM.jpeg";
+import medstarLogo from "@/assets/medstar-logo.png";
 import icuImg from "@/assets/icu-facility.jpg";
 import doctorImg from "@/assets/reception.jpg";
 import founderImg from "@/assets/WhatsApp Image 2025-01-06 at 20.30.09_0aea704c.jpg";
@@ -33,7 +33,7 @@ const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
 
 const REASONS = [
   { icon: HeartPulse, tag: "Human", title: "Care that listens", body: "Doctors who explain, staff who remember your name, and time given without a rush." },
-  { icon: ShieldCheck, tag: "Trust", title: "Cashless & clear", body: "Empanelled with major insurers with transparent, upfront estimates for every plan." },
+  { icon: ShieldCheck, tag: "Trust", title: "Simple & clear", body: "Empanelled with major insurers with transparent, upfront estimates for every plan." },
   { icon: Siren, tag: "Ready", title: "24×7 ICU & emergency", body: "Trained intensivists, monitored beds and ambulance-to-bed response, always on." },
   { icon: Droplets, tag: "Modern", title: "In-house diagnostics", body: "Pathology, sonography and imaging on-site — faster answers, fewer trips." },
 ];
@@ -55,9 +55,14 @@ const DOCTORS = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Priya S.", area: "Patient family", body: "The doctors and ICU team were exceptional during my father's recovery. Calm, kind and incredibly skilled." },
-  { name: "Rahul M.", area: "Orthopaedic patient", body: "From admission to discharge, every step felt organised and reassuring. Truly patient-first care." },
-  { name: "Anjali K.", area: "Pediatric care", body: "Modern facilities and warm staff. The pediatric team made my daughter feel completely at ease." },
+  { name: "Aparna Jhangiani",  body: "My mother-in-law was admitted to Medstar Hospital for 14 days. The services at this hospital are good, and the nurses and doctors are excellent. Dr. Shailendra is a polite man; the way he talks and communicates with patients' relatives is very good, making them feel comfortable. The doctor and RMO are good and explain the situation very well. Overall, it's been a good experience with the operations." },
+  { name: "yogita panchal",  body: "Had a very positive experience . The staff was polite, supportive, and well-organized, and the facilities were clean and comfortable. Special thanks to Dr. Shailendra for the excellent care and guidance. He was patient, professional, and explained everything clearly, which made us feel confident and reassured. Truly grateful for the dedication and compassionate service." },
+  { name: "Ganesh Ram",  body:  "It is really one of the best and underrated hospital in Mulund and nearby area. Because of its lack of advertisement it falls back but on a scale of 1 to 10 it surpasses major hospitals in Mulund like Fortis. Treatment wise the doctors Dr. Shridar Radhakrishnan and Dr Shailendra Nanaware both were very patient in explaining the details and took utmost care when my father got admitted. Would rate it 8/10 and it would be really great if people start preferring this one when in need." },
+  { name: "Chandan Kumar",  body: "I had a wonderful experience at Medstar Multispeciality Hospital. The staff was extremely professional and compassionate, always ready to assist with a smile. The facilities are top-notch, and the hospital maintains excellent hygiene standards. The doctors and nurses went above and beyond to provide me with the best possible care. I’m so grateful for their dedication and expertise." },
+  { name: "shivam Pal",  body: "Medstar Multispecialty Hospital has modern and clean facilities, ensuring a comfortable and safe environment for patients and visitors. The waiting areas are spacious and well-organized, patient rooms are clean and well-equipped" },
+  { name: "shiva singh",  body: "I had an excellent experience at MEDSTAR MULTISPECIALITY HOSPITAL AND ICU. The facilities were top-notch, clean, and well-maintained. The staff was professional, courteous, and always available to assist with any concerns. The rooms were spacious, with modern equipment and comfortable seating for visitors. What stood out most was the attention to detail everything from the seamless check-in process to the quality of the meals exceeded expectations. The medical team was highly skilled and attentive, making me feel confident and cared for throughout my stay. I highly recommend this hospital for anyone seeking quality healthcare!" },
+  { name: "Jitesh katewa",  body: "The facilities here are top-notch. The rooms are clean, well-maintained, and equipped with modern amenities. The staff is very professional and caring. Highly recommend this hospital for anyone seeking quality healthcare." },
+  { name: "Lloyd Rego",  body: "New Hospital with excellent service. Rare to find a doctor like Dr. Shailendra Nanaware who is a practical doctor, always keeping the patient's interest in mind. Rates charged are also fair. Truly satisfied with the staff and overall experience. I would go a step further to say, with such a team in place Medstar Hospital may perhaps be a much better place to have your loved ones cured, than take them to some of the large corporate hospitals in our vicinity." },
 ];
 
 const INSURERS = [
@@ -117,6 +122,15 @@ function Home() {
             </span>
           </Reveal>
 
+          {/* Large Medstar Logo spanning one end to another */}
+          <Reveal className="w-full mb-14">
+            <img
+              src={medstarLogo}
+              alt="Medstar Multispeciality Hospital & ICU Logo"
+              className="w-full h-auto max-h-[160px] md:max-h-[220px] object-contain hover:scale-[1.01] transition-transform duration-300"
+            />
+          </Reveal>
+
           {/* Editorial headline */}
           <div className="grid lg:grid-cols-12 gap-10 items-end">
             <div className="lg:col-span-8">
@@ -146,20 +160,8 @@ function Home() {
               </Reveal>
             </div>
 
-            {/* Right column — lobby image & emergency card */}
+            {/* Right column — emergency card */}
             <div className="lg:col-span-4 relative">
-              <Reveal delay={140}>
-                <div className="relative mb-4 overflow-hidden rounded-3xl aspect-[4/3] shadow-elegant border">
-                  <img
-                    src={heroImg}
-                    alt="Medstar Hospital Lobby"
-                    width={1200}
-                    height={900}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
-                </div>
-              </Reveal>
               <Reveal delay={200}>
                 <div className="relative rounded-3xl bg-white shadow-elegant p-6 border">
                   <div className="flex items-center justify-between mb-4">
@@ -183,7 +185,7 @@ function Home() {
                   <div className="mt-5 grid grid-cols-3 gap-2 pt-5 border-t">
                     {[
                       { k: "35", v: "Beds" },
-                      { k: "17", v: "Depts" },
+                      { k: "18", v: "Depts" },
                       { k: "1000+", v: "Treated" },
                     ].map((s) => (
                       <div key={s.v} className="text-center">
@@ -576,26 +578,23 @@ function Home() {
               <div>
                 <span className="eyebrow"><span className="size-1.5 rounded-full bg-yellow" /> Patient Voices</span>
                 <h2 className="mt-5 font-display text-4xl md:text-6xl text-navy tracking-[-0.03em] leading-[1.02] max-w-2xl">
-                  Real stories from
+                stories from our patients
                   <br />
-                  <span className="italic text-yellow font-normal">our neighbours.</span>
+                  <span className="italic text-yellow font-normal">that make us proud</span>
                 </h2>
               </div>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-4">
-            {TESTIMONIALS.map((t, i) => (
-              <Reveal key={t.name} delay={i * 90}>
-                <figure className="rounded-2xl bg-white border p-7 h-full card-lift flex flex-col">
-                  <Quote className="size-6 text-teal/40" />
-                  <blockquote className="mt-5 text-foreground/80 leading-relaxed flex-1 italic">
-                    "{t.body}"
-                  </blockquote>
-                  <div className="mt-6 pt-5 border-t flex items-center justify-between">
+          <div className="relative overflow-hidden w-full" style={{ maskImage: "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)" }}>
+            <div className="flex gap-6 animate-marquee py-5 w-max">
+              {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+                <figure key={i} className="flex-shrink-0 w-[420px] max-w-[90vw] rounded-2xl bg-white border p-6 hover:shadow-elegant hover:-translate-y-1 transition-all duration-1000 flex flex-col gap-4">
+                  {/* Top: Name & Stars */}
+                  <div className="flex items-center justify-between gap-4">
                     <div>
-                      <div className="font-semibold text-navy text-sm">{t.name}</div>
-                      <div className="text-xs text-muted-foreground">{t.area}</div>
+                      <div className="font-display font-semibold text-base text-navy leading-snug">{t.name}</div>
+                      <div className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">Verified Patient</div>
                     </div>
                     <div className="flex gap-0.5">
                       {[...Array(5)].map((_, s) => (
@@ -603,9 +602,17 @@ function Home() {
                       ))}
                     </div>
                   </div>
+                  
+                  {/* Bottom: Quote Body */}
+                  <div className="border-t pt-4">
+                    <Quote className="size-5 text-teal/40 mb-2" />
+                    <blockquote className="text-sm text-foreground/85 leading-relaxed italic">
+                      "{t.body}"
+                    </blockquote>
+                  </div>
                 </figure>
-              </Reveal>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

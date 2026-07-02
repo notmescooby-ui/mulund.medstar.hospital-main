@@ -21,6 +21,7 @@ import orthoBg from "@/assets/ortho-bg.png";
 import pedBg from "@/assets/ped-bg.png";
 import plasticBg from "@/assets/plastic-bg.png";
 import urologyBg from "@/assets/urology-bg.png";
+import hematologyBg from "@/assets/hematology-bg.png";
 
 export const Route = createFileRoute("/services/$slug")({
   head: ({ params }) => {
@@ -177,7 +178,9 @@ function DepartmentHeroBackground({ dept }: { dept: Department }) {
                                     ? entBg
                                     : dept.slug === "ophthalmology"
                                       ? eyeBg
-                                      : null;
+                                      : dept.slug === "hematology"
+                                        ? hematologyBg
+                                        : null;
 
   if (heroImage) {
     return (

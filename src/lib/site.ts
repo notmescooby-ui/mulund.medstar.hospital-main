@@ -54,8 +54,7 @@ export const DEPARTMENTS: Department[] = [
     ],
     doctors: [
       { name: "Dr. Prafulla Herode", role: "Orthopaedic Surgeon", gender: "male" },
-      { name: "Dr. Sourabh Jatkar", role: "Orthopaedic Surgeon", gender: "male" },
-      { name: "Dr. Vishal Acharya", role: "Orthopaedic Surgeon", gender: "male" },
+      { name: "Dr. Mohan Murade", role: "Orthopaedic Surgeon", gender: "male" },
     ],
   },
   {
@@ -257,7 +256,7 @@ export const DEPARTMENTS: Department[] = [
     ],
     doctors: [
       { name: "Dr. Anagha Adulkar", role: "Gynaecologist & Obstetrician", gender: "female" },
-      { name: "Dr. Sunita Gogate", role: "Gynaecologist & Obstetrician", gender: "female" },
+      { name: "Dr. Sejal Kulkarni", role: "Gynaecologist & Obstetrician", gender: "female" },
     ],
   },
   {
@@ -338,7 +337,8 @@ export const DEPARTMENTS: Department[] = [
     ],
     doctors: [
       { name: "Dr. Amol Nanaware", role: "General Physician", gender: "male" },
-      { name: "Dr. Shailesh Patil", role: "General Physician", gender: "male" },
+      { name: "Dr. Anita Jaiswal Ekate", role: "General Physician", gender: "female" },
+      { name: "Dr. Prasad Butala", role: "General Physician", gender: "male" },
       { name: "Dr. Mrinalini Singh", role: "General Physician", gender: "female" },
     ],
   },
@@ -384,6 +384,28 @@ export const DEPARTMENTS: Department[] = [
     ],
     doctors: [{ name: "Dr. Shrikant Balasubramanyam", role: "Neurosurgeon", gender: "male" }],
   },
+  {
+    slug: "hematology",
+    name: "Hematology",
+    icon: "Droplets",
+    tagline: "Expert care for blood disorders.",
+    description:
+      "Comprehensive diagnosis and treatment for blood-related conditions including anaemia, clotting disorders, platelet disorders and lymphoma.",
+    services: [
+      "Anaemia treatment",
+      "Clotting disorders clinic",
+      "Platelet disorders care",
+      "Blood transfusion support",
+      "Hematological consultations",
+    ],
+    highlights: [
+      { title: "Advanced blood tests", body: "Fast, precise blood diagnostics at our in-house lab." },
+      { title: "Expert clinical care", body: "Patient-first treatment plans by senior hematologists." },
+    ],
+    doctors: [
+      { name: "Dr. Shradha Thakar", role: "Consultant Hematologist", gender: "female" },
+    ],
+  },
 ];
 
 export const STATS = [
@@ -403,4 +425,6 @@ export const INSURERS = [
   "Care Health",
   "Heritage",
   "MJPJAY & AB-PMJAY",
+  "SBI",
+  "AKNA",
 ];

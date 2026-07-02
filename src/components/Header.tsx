@@ -11,6 +11,7 @@ const NAV = [
   { to: "/doctors", label: "Doctors" },
   { to: "/icu", label: "ICU" },
   { to: "/insurance", label: "Insurance" },
+  { to: "/pmjay", label: "PMJAY" },
   { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact" },
 ];
@@ -46,8 +47,8 @@ export function Header() {
               <span className="absolute inset-0 rounded-full ring-1 ring-teal/40 animate-pulse-ring" />
             </span>
             <span className="flex flex-col leading-tight">
-              <span className="font-display text-[15px] font-semibold text-navy tracking-tight">Medstar</span>
-              <span className="text-[9px] font-medium text-muted-foreground uppercase tracking-[0.22em] -mt-0.5">Hospital · ICU</span>
+              <span className="font-display text-[15px] font-semibold text-navy tracking-tight">Medstar Multispeciality</span>
+              <span className="text-[9px] font-medium text-muted-foreground uppercase tracking-[0.22em] -mt-0.5">Hospital & ICU</span>
             </span>
           </Link>
 

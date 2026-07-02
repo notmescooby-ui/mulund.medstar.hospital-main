@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PmjayRouteImport } from './routes/pmjay'
 import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as IcuRouteImport } from './routes/icu'
 import { Route as GalleryRouteImport } from './routes/gallery'
@@ -22,6 +23,11 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PmjayRoute = PmjayRouteImport.update({
+  id: '/pmjay',
+  path: '/pmjay',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsuranceRoute = InsuranceRouteImport.update({
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/icu': typeof IcuRoute
   '/insurance': typeof InsuranceRoute
+  '/pmjay': typeof PmjayRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/$slug': typeof ServicesSlugRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/icu': typeof IcuRoute
   '/insurance': typeof InsuranceRoute
+  '/pmjay': typeof PmjayRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/$slug': typeof ServicesSlugRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/icu': typeof IcuRoute
   '/insurance': typeof InsuranceRoute
+  '/pmjay': typeof PmjayRoute
   '/services': typeof ServicesRouteWithChildren
   '/services/$slug': typeof ServicesSlugRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/icu'
     | '/insurance'
+    | '/pmjay'
     | '/services'
     | '/services/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/icu'
     | '/insurance'
+    | '/pmjay'
     | '/services'
     | '/services/$slug'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/icu'
     | '/insurance'
+    | '/pmjay'
     | '/services'
     | '/services/$slug'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   IcuRoute: typeof IcuRoute
   InsuranceRoute: typeof InsuranceRoute
+  PmjayRoute: typeof PmjayRoute
   ServicesRoute: typeof ServicesRouteWithChildren
 }
 
@@ -153,6 +166,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pmjay': {
+      id: '/pmjay'
+      path: '/pmjay'
+      fullPath: '/pmjay'
+      preLoaderRoute: typeof PmjayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insurance': {
@@ -234,6 +254,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   IcuRoute: IcuRoute,
   InsuranceRoute: InsuranceRoute,
+  PmjayRoute: PmjayRoute,
   ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
