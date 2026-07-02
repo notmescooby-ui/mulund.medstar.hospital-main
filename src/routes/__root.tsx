@@ -9,10 +9,10 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import "@/lib/i18n";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";
-import "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -78,8 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Medstar Multispeciality Hospital and ICU" },
       {
         property: "og:description",
-        content:
-          "Modern multispeciality hospital with 24×7 ICU & emergency care in Mulund West, Mumbai.",
+        content: "Modern multispeciality hospital with 24×7 ICU & emergency care in Mulund West, Mumbai.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -111,7 +110,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-24">
         <Outlet />
       </main>
       <Footer />

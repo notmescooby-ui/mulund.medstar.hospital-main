@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, Phone, ChevronDown, Stethoscope, UserRound } from "lucide-react";
+import { ArrowRight, CheckCircle2, Phone, ChevronDown, Stethoscope } from "lucide-react";
 import { useState } from "react";
 import { DEPARTMENTS, SITE, type Department, type Doctor } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -66,11 +66,10 @@ function getInitials(name: string) {
 }
 
 const AVATAR_GRADIENTS = [
-  "from-teal-400 to-cyan-600",
-  "from-sky-400 to-blue-600",
-  "from-indigo-400 to-violet-600",
-  "from-emerald-400 to-teal-600",
-  "from-cyan-400 to-sky-600",
+  "from-teal via-primary/80 to-blue/80",
+  "from-blue via-navy/80 to-purple/80",
+  "from-teal via-green/80 to-teal/70",
+  "from-purple via-teal/80 to-blue/85",
 ];
 
 function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; slug?: string }) {
@@ -78,16 +77,13 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
   const initials = getInitials(doctor.name);
   return (
     <div
-      className="group relative rounded-2xl bg-card shadow-card overflow-hidden
-                 hover:shadow-elegant hover:-translate-y-1 transition-all duration-300
-                 border border-teal-200 hover:border-teal-400"
-      style={{ boxShadow: "0 0 0 1px rgba(14,165,164,0.15), 0 2px 8px rgba(14,165,164,0.08)" }}
+      className="group relative rounded-2xl bg-card shadow-card overflow-hidden hover:shadow-elegant hover:-translate-y-1 transition-all duration-300 border border-border/80 hover:border-teal/30"
     >
       {/* top teal accent bar — always visible, brightens on hover */}
-      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-teal-400 via-primary to-blue opacity-60 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl" />
+      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-teal via-primary to-blue opacity-60 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl" />
 
       {/* subtle primary tint background on hover */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-teal/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       <div className="relative p-6 flex flex-col items-center text-center gap-4">
         {/* Avatar with stethoscope badge */}
@@ -103,16 +99,16 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
           {/* Stethoscope badge */}
           <div
             className="absolute -bottom-2 -right-2 grid place-items-center size-7 rounded-full
-                          bg-white border-2 border-teal-200 shadow-sm
-                          group-hover:border-teal-400 group-hover:bg-teal-50 transition-all duration-300"
+                          bg-white border-2 border-border shadow-sm
+                          group-hover:border-teal/30 group-hover:bg-accent transition-all duration-300"
           >
-            <Stethoscope className="size-3.5 text-primary" />
+            <Stethoscope className="size-3.5 text-teal" />
           </div>
         </div>
 
         {/* Name & role */}
         <div className="mt-1">
-          <p className="font-semibold text-base leading-snug">{doctor.name}</p>
+          <p className="font-display font-semibold text-base text-navy leading-snug">{doctor.name}</p>
           {doctor.role && (
             <p className="text-xs text-muted-foreground mt-1 font-medium">{doctor.role}</p>
           )}
@@ -124,9 +120,8 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
             href="https://mulundeyecare.com/contact"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary
-                       border border-primary/20 rounded-xl px-4 py-2
-                       hover:bg-primary hover:text-white hover:border-primary
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-navy
+                       border border-border/80 rounded-xl px-4 py-2 hover:bg-navy hover:text-white hover:border-navy
                        transition-all duration-200 w-full justify-center"
           >
             Book Appointment <ArrowRight className="size-3" />
@@ -134,9 +129,8 @@ function DoctorCard({ doctor, index, slug }: { doctor: Doctor; index: number; sl
         ) : (
           <Link
             to="/contact"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary
-                       border border-primary/20 rounded-xl px-4 py-2
-                       hover:bg-primary hover:text-white hover:border-primary
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-navy
+                       border border-border/80 rounded-xl px-4 py-2 hover:bg-navy hover:text-white hover:border-navy
                        transition-all duration-200 w-full justify-center"
           >
             Book Appointment <ArrowRight className="size-3" />
@@ -193,7 +187,7 @@ function DepartmentHeroBackground({ dept }: { dept: Department }) {
           alt=""
           className="absolute inset-0 size-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/88 via-background/55 to-background/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/10" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-background/35" />
       </div>
     );
@@ -225,39 +219,39 @@ function DepartmentPage() {
         <DepartmentHeroBackground dept={dept} />
         <div className="container-px relative mx-auto max-w-7xl py-16 lg:py-20 grid lg:grid-cols-12 gap-10 items-center">
           <Reveal className="lg:col-span-8 space-y-5">
-            <Link to="/services" className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:gap-2.5 transition-all">← All Services</Link>
+            <Link to="/services" className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal hover:gap-2.5 transition-all">← All Services</Link>
             <div className="flex items-center gap-4">
-              <div className="grid place-items-center size-16 rounded-2xl bg-primary-gradient text-primary-foreground shadow-glow">
+              <div className="grid place-items-center size-16 rounded-2xl bg-navy text-white shadow-soft">
                 <DepartmentIcon name={dept.icon} className="size-8" />
               </div>
               <div>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">{dept.name}</h1>
-                <p className="text-primary font-medium mt-1">{dept.tagline}</p>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display text-navy tracking-tight leading-none">{dept.name}</h1>
+                <p className="text-teal font-medium mt-1">{dept.tagline}</p>
               </div>
             </div>
             <p className="text-muted-foreground max-w-2xl leading-relaxed">{dept.description}</p>
             <div className="flex flex-wrap gap-3">
               {dept.slug === "ophthalmology" ? (
-                <a href="https://mulundeyecare.com/contact" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition">
+                <a href="https://mulundeyecare.com/contact" target="_blank" rel="noopener noreferrer" className="btn-primary">
                   Book Consultation <ArrowRight className="size-4" />
                 </a>
               ) : (
-                <Link to="/contact" className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition">
+                <Link to="/contact" className="btn-primary">
                   Book Consultation <ArrowRight className="size-4" />
                 </Link>
               )}
-              <a href={SITE.phoneLink} className="inline-flex items-center gap-2 glass text-foreground px-6 py-3 rounded-2xl font-semibold shadow-card">
+              <a href={SITE.phoneLink} className="btn-ghost">
                 <Phone className="size-4" /> Call {SITE.phone}
               </a>
             </div>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-4">
-            <div className="rounded-3xl glass p-6 shadow-elegant space-y-4">
-              <div className="text-xs uppercase font-semibold text-primary tracking-wider">Why Medstar</div>
+            <div className="rounded-3xl border bg-white/80 backdrop-blur-xl p-6 shadow-elegant space-y-4">
+              <div className="text-xs uppercase font-semibold text-navy tracking-wider">Why Medstar</div>
               {dept.highlights.map((h: Department["highlights"][number]) => (
                 <div key={h.title} className="rounded-xl bg-card p-4 border shadow-card">
-                  <div className="font-semibold text-sm">{h.title}</div>
-                  <p className="text-xs text-muted-foreground mt-1">{h.body}</p>
+                  <div className="font-display font-semibold text-sm text-navy">{h.title}</div>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{h.body}</p>
                 </div>
               ))}
             </div>
@@ -270,11 +264,11 @@ function DepartmentPage() {
         <section className="bg-soft py-20">
           <div className="container-px mx-auto max-w-7xl">
             <Reveal className="space-y-3 mb-10 text-center">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">
-                <Stethoscope className="size-3" /> Our Specialists
+              <span className="eyebrow">
+                Our Specialists
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold">
-                Meet your <span className="gradient-text">consulting doctors</span>
+              <h2 className="text-3xl sm:text-4xl font-display text-navy tracking-tight leading-tight">
+                Meet your <span className="italic font-normal text-teal">consulting doctors</span>
               </h2>
               <p className="text-muted-foreground max-w-xl mx-auto text-sm">
                 Our {dept.name} team comprises experienced, compassionate specialists committed to your best outcome.
@@ -302,17 +296,17 @@ function DepartmentPage() {
       {/* Services Offered */}
       <section className="container-px mx-auto max-w-7xl py-20">
         <Reveal className="space-y-3 mb-10">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">Services Offered</span>
-          <h2 className="text-3xl sm:text-4xl font-bold">What we treat & offer</h2>
+          <span className="eyebrow">Services Offered</span>
+          <h2 className="text-3xl sm:text-4xl font-display text-navy tracking-tight leading-tight">What we treat & offer</h2>
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {dept.services.map((s: string, i: number) => (
             <Reveal key={s} delay={(i % 3) * 60}>
               <div className="flex items-start gap-3 rounded-2xl border bg-card p-5 shadow-card hover:shadow-soft hover:-translate-y-0.5 transition-all">
-                <CheckCircle2 className="size-5 text-primary shrink-0 mt-0.5" />
+                <CheckCircle2 className="size-5 text-teal shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-semibold text-sm">{s}</div>
-                  <p className="text-xs text-muted-foreground mt-1">Modern protocols and personalised treatment plans by experienced specialists.</p>
+                  <div className="font-display font-semibold text-sm text-navy">{s}</div>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">Modern protocols and personalised treatment plans by experienced specialists.</p>
                 </div>
               </div>
             </Reveal>
@@ -324,8 +318,8 @@ function DepartmentPage() {
       <section className="bg-soft py-20">
         <div className="container-px mx-auto max-w-3xl">
           <Reveal className="space-y-3 mb-8 text-center">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">Frequently Asked</span>
-            <h2 className="text-3xl sm:text-4xl font-bold">Your questions, answered.</h2>
+            <span className="eyebrow">Frequently Asked</span>
+            <h2 className="text-3xl sm:text-4xl font-display text-navy tracking-tight leading-tight">Your questions, answered.</h2>
           </Reveal>
           <div className="space-y-3">
             {FAQ.map((f, i) => <FaqItem key={f.q} {...f} index={i} />)}
@@ -337,19 +331,19 @@ function DepartmentPage() {
       <section className="container-px mx-auto max-w-7xl py-20">
         <Reveal className="mb-8 flex items-end justify-between">
           <div>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">More Departments</span>
-            <h2 className="text-2xl sm:text-3xl font-bold mt-2">Explore related care</h2>
+            <span className="eyebrow">More Departments</span>
+            <h2 className="text-2xl sm:text-3xl font-display text-navy mt-2">Explore related care</h2>
           </div>
-          <Link to="/services" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">View all <ArrowRight className="size-4" /></Link>
+          <Link to="/services" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-teal hover:gap-2.5 transition-all">View all <ArrowRight className="size-4" /></Link>
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {related.map((d) => (
             <Link key={d.slug} to="/services/$slug" params={{ slug: d.slug }} className="group rounded-2xl border bg-card p-5 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all">
-              <div className="grid place-items-center size-11 rounded-xl bg-accent text-primary group-hover:bg-primary-gradient group-hover:text-primary-foreground transition-all mb-3">
+              <div className="grid place-items-center size-11 rounded-xl bg-navy/5 text-navy group-hover:bg-navy group-hover:text-white transition-all mb-3">
                 <DepartmentIcon name={d.icon} className="size-5" />
               </div>
-              <div className="font-semibold">{d.name}</div>
-              <p className="text-xs text-muted-foreground mt-1">{d.tagline}</p>
+              <div className="font-display font-semibold text-navy">{d.name}</div>
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{d.tagline}</p>
             </Link>
           ))}
         </div>
@@ -363,8 +357,8 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
   return (
     <div className="rounded-2xl border bg-card shadow-card overflow-hidden">
       <button onClick={() => setOpen((v) => !v)} className="w-full flex items-center justify-between gap-4 p-5 text-left">
-        <span className="font-semibold text-sm sm:text-base">{q}</span>
-        <ChevronDown className={`size-5 text-primary transition-transform ${open ? "rotate-180" : ""}`} />
+        <span className="font-semibold text-sm sm:text-base text-navy">{q}</span>
+        <ChevronDown className={`size-5 text-teal transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
       <div className={`grid transition-all duration-300 ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">

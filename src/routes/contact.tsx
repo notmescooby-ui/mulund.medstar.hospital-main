@@ -44,12 +44,12 @@ function ContactPage() {
     <div className="overflow-x-hidden">
       <section className="bg-hero">
         <div className="container-px mx-auto max-w-7xl py-16 lg:py-24 text-center space-y-5">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-primary">
+          <span className="eyebrow">
             {t("contact.getInTouch")}
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display text-navy tracking-tight leading-tight">
             {t("contact.wereHere")}{" "}
-            <span className="gradient-text">{t("contact.wheneverNeeded")}</span>
+            <span className="italic font-normal text-teal">{t("contact.wheneverNeeded")}</span>
           </h1>
           <p className="max-w-2xl mx-auto text-muted-foreground">{t("contact.subtitle")}</p>
         </div>
@@ -60,7 +60,7 @@ function ContactPage() {
           {/* Form */}
           <Reveal className="lg:col-span-7">
             <div className="rounded-3xl border bg-card p-7 sm:p-10 shadow-elegant">
-              <h2 className="text-2xl sm:text-3xl font-bold">{t("contact.bookAppointment")}</h2>
+              <h2 className="font-display text-2xl sm:text-3xl text-navy font-semibold">{t("contact.bookAppointment")}</h2>
               <p className="text-sm text-muted-foreground mt-1">{t("contact.formSubtitle")}</p>
               <form onSubmit={onSubmit} className="mt-6 grid sm:grid-cols-2 gap-4">
                 <Field
@@ -102,13 +102,13 @@ function ContactPage() {
                   <p className="text-xs text-muted-foreground">{t("contact.consentText")}</p>
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-6 py-3 rounded-2xl font-semibold shadow-soft hover:shadow-glow transition hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 bg-navy text-white px-6 py-3.5 rounded-full text-sm font-semibold shadow-soft hover:bg-teal hover:scale-102 transition"
                   >
                     <Send className="size-4" /> {t("contact.sendRequest")}
                   </button>
                 </div>
                 {sent && (
-                  <p className="sm:col-span-2 text-sm text-primary font-medium">
+                  <p className="sm:col-span-2 text-sm text-teal font-semibold mt-2">
                     {t("contact.openingWhatsApp")}
                   </p>
                 )}
@@ -120,11 +120,11 @@ function ContactPage() {
           <Reveal delay={120} className="lg:col-span-5 space-y-5">
             <a
               href={SITE.phoneLink}
-              className="block rounded-3xl bg-destructive text-destructive-foreground p-6 shadow-elegant hover:scale-[1.02] transition-transform"
+              className="block rounded-3xl bg-red text-white p-6 shadow-elegant hover:scale-[1.02] transition-transform duration-300"
             >
               <div className="flex items-center gap-3">
                 <div className="grid place-items-center size-12 rounded-2xl bg-white/20">
-                  <Siren className="size-6" />
+                  <Siren className="size-6 text-white" />
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-wider opacity-90">
@@ -171,7 +171,7 @@ function ContactPage() {
             <iframe
               title="Medstar Hospital location map"
               src={SITE.mapsEmbed}
-              className="w-full h-full"
+              className="w-full h-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
@@ -233,7 +233,7 @@ function InfoCard({
       className="block rounded-2xl border bg-card p-5 shadow-card hover:shadow-elegant hover:-translate-y-0.5 transition-all"
     >
       <div className="flex gap-4">
-        <div className="grid place-items-center size-12 rounded-xl bg-primary-gradient text-primary-foreground shadow-soft shrink-0">
+        <div className="grid place-items-center size-12 rounded-xl bg-navy/5 text-navy shrink-0">
           <Icon className="size-5" />
         </div>
         <div>

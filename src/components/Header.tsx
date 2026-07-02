@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
 import { SITE } from "@/lib/site";
 import medstarLogo from "@/assets/Green Minimalistic Gift Circle Sticker - 1.png";
 
@@ -8,6 +8,8 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
+  { to: "/doctors", label: "Doctors" },
+  { to: "/icu", label: "ICU" },
   { to: "/insurance", label: "Insurance" },
   { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact" },
@@ -19,7 +21,7 @@ export function Header() {
   const loc = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -30,106 +32,86 @@ export function Header() {
   }, [loc.pathname]);
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/70 transition-all duration-500 ${
-        scrolled ? "py-2 shadow-soft" : "py-4"
-      }`}
-    >
+    <header className={`fixed inset-x-0 z-50 transition-all duration-500 ${scrolled ? "top-3" : "top-5"}`}>
       <div className="container-px mx-auto max-w-[95rem]">
-        <div
-          className={`rounded-2xl bg-card/85 border border-border/60 backdrop-blur-xl shadow-soft transition-all duration-500 ${scrolled ? "px-3 sm:px-4 py-2" : "px-3 sm:px-4 py-3"}`}
-        >
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <Link
-              to="/"
-              className="flex flex-1 min-w-0 items-start gap-3 group"
-              aria-label="Medstar Multispeciality Hospital and ICU home"
-            >
-              <span className="grid place-items-center h-14 w-14 min-w-[3.5rem] rounded-full bg-accent shadow-elegant ring-2 ring-primary/20 overflow-hidden transition-transform duration-300 group-hover:scale-105">
-                <img
-                  src={medstarLogo}
-                  alt="Medstar Hospital logo"
-                  className="h-full w-full object-cover"
-                />
-              </span>
-              <span className="flex-1 min-w-0 flex flex-col items-start">
-                <span className="font-display font-bold text-[13px] sm:text-[14px] md:text-[15px] uppercase tracking-[0.16em] text-slate-950 leading-tight break-words">
-                  Medstar Multispeciality Hospital
-                </span>
-                <span className="font-display font-bold text-[13px] sm:text-[14px] md:text-[15px] uppercase tracking-[0.16em] text-slate-950 leading-tight break-words">
-                  And ICU
-                </span>
-                <span className="text-[13px] sm:text-[14px] text-muted-foreground mt-1 leading-tight">
-                  A Star in Health Care
-                </span>
-              </span>
-            </Link>
+        <div className="glass-nav rounded-full pl-3 pr-2 py-2 flex items-center justify-between gap-4">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2.5 pl-2 pr-3 shrink-0 group">
+            <span className="relative grid place-items-center size-9 rounded-full bg-white overflow-hidden shadow-soft border transition-transform duration-300 group-hover:scale-105 shrink-0">
+              <img
+                src={medstarLogo}
+                alt="Medstar Hospital logo"
+                className="h-full w-full object-cover"
+              />
+              <span className="absolute inset-0 rounded-full ring-1 ring-teal/40 animate-pulse-ring" />
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="font-display text-[15px] font-semibold text-navy tracking-tight">Medstar</span>
+              <span className="text-[9px] font-medium text-muted-foreground uppercase tracking-[0.22em] -mt-0.5">Hospital · ICU</span>
+            </span>
+          </Link>
 
-            <nav className="hidden lg:flex flex-1 items-center justify-center gap-3 min-w-0">
-              {NAV.map((n) => {
-                const active = n.to === "/" ? loc.pathname === "/" : loc.pathname.startsWith(n.to);
-                return (
-                  <Link
-                    key={n.to}
-                    to={n.to}
-                    className={`relative px-4 py-2 text-sm font-medium rounded-2xl transition-all duration-200 ${
-                      active
-                        ? "text-primary bg-accent/80"
-                        : "text-muted-foreground hover:text-primary hover:bg-accent/80"
-                    }`}
-                  >
-                    {n.label}
-                    {active && (
-                      <span className="absolute left-3 right-3 -bottom-0.5 h-0.5 rounded-full bg-primary-gradient" />
-                    )}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            <div className="flex shrink-0 items-center gap-2">
-              <a
-                href={SITE.phoneLink}
-                className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-2xl text-xs font-semibold text-muted-foreground hover:text-primary hover:bg-accent/80 transition-all duration-200"
-              >
-                <Phone className="size-4" /> {SITE.phone}
-              </a>
-              <Link
-                to="/contact"
-                className="hidden md:inline-flex items-center gap-2 bg-primary-gradient text-primary-foreground px-4 py-2.5 rounded-2xl text-sm font-semibold shadow-soft hover:shadow-glow transition-all duration-200 hover:-translate-y-0.5"
-              >
-                Book Appointment
-              </Link>
-              <button
-                aria-label="Toggle menu"
-                onClick={() => setOpen((v) => !v)}
-                className="lg:hidden grid place-items-center size-10 rounded-2xl text-foreground hover:bg-accent transition-all duration-200"
-              >
-                {open ? <X className="size-5" /> : <Menu className="size-5" />}
-              </button>
-            </div>
-          </div>
-
-          {open && (
-            <div className="lg:hidden mt-3 pt-3 border-t flex flex-col animate-fade-in">
-              {NAV.map((n) => (
+          {/* Nav */}
+          <nav className="hidden xl:flex items-center gap-0.5">
+            {NAV.map((n) => {
+              const active = n.to === "/" ? loc.pathname === "/" : loc.pathname.startsWith(n.to);
+              return (
                 <Link
                   key={n.to}
                   to={n.to}
-                  className="px-2 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-accent/40 rounded-xl"
+                  className={`relative px-3 py-1.5 text-[13px] font-medium rounded-full transition-colors ${
+                    active ? "text-navy font-semibold" : "text-foreground/60 hover:text-navy"
+                  }`}
                 >
+                  {active && <span className="absolute inset-0 rounded-full bg-navy/5" />}
+                  <span className="relative">{n.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-2">
+            <a
+              href={SITE.phoneLink}
+              className="hidden lg:inline-flex items-center gap-2 px-3 py-1.5 text-[13px] font-semibold text-navy hover:text-teal transition"
+            >
+              <Phone className="size-3.5" /> {SITE.phone}
+            </a>
+            <Link
+              to="/contact"
+              className="hidden sm:inline-flex items-center gap-1.5 bg-navy text-white pl-4 pr-3 py-2 rounded-full text-[13px] font-semibold hover:bg-teal transition-colors group"
+            >
+              Book Appointment
+              <span className="grid place-items-center size-5 rounded-full bg-white/15 group-hover:bg-white/25 transition">
+                <ArrowUpRight className="size-3" />
+              </span>
+            </Link>
+            <button
+              aria-label="Toggle menu"
+              onClick={() => setOpen((v) => !v)}
+              className="xl:hidden grid place-items-center size-9 rounded-full bg-navy text-white"
+            >
+              {open ? <X className="size-4" /> : <Menu className="size-4" />}
+            </button>
+          </div>
+        </div>
+
+        {open && (
+          <div className="xl:hidden mt-2 glass-nav rounded-3xl p-4 animate-fade-in">
+            <div className="flex flex-col">
+              {NAV.map((n) => (
+                <Link key={n.to} to={n.to} className="px-2 py-3 text-sm font-medium text-navy border-b border-border/60 last:border-0">
                   {n.label}
                 </Link>
               ))}
-              <Link
-                to="/contact"
-                className="mt-2 inline-flex justify-center items-center bg-primary-gradient text-primary-foreground px-4 py-3 rounded-xl text-sm font-semibold"
-              >
-                Book Appointment
-              </Link>
+              <div className="flex gap-2 mt-3">
+                <a href={SITE.phoneLink} className="flex-1 btn-ghost justify-center"><Phone className="size-4" /> Call</a>
+                <Link to="/contact" className="flex-1 btn-primary justify-center">Book</Link>
+              </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </header>
   );

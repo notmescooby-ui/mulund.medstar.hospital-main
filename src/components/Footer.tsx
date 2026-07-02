@@ -17,8 +17,7 @@ export function Footer() {
             </div>
           </div>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            A modern multispeciality hospital and ICU in Mulund West, Mumbai — committed to
-            compassionate, expert care for every patient.
+            A modern multispeciality hospital and ICU in Mulund West, Mumbai — committed to compassionate, expert care for every patient.
           </p>
           <a
             href={SITE.phoneLink}
@@ -29,81 +28,38 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider text-foreground/80">
-            Quick Links
-          </h4>
+          <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider text-foreground/80">Quick Links</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>
-              <Link to="/" className="hover:text-primary transition">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="hover:text-primary transition">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/services" className="hover:text-primary transition">
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link to="/insurance" className="hover:text-primary transition">
-                Insurance
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="hover:text-primary transition">
-                Contact
-              </Link>
-            </li>
+            <li><Link to="/" className="hover:text-primary transition">Home</Link></li>
+            <li><Link to="/about" className="hover:text-primary transition">About Us</Link></li>
+            <li><Link to="/services" className="hover:text-primary transition">Services</Link></li>
+            <li><Link to="/insurance" className="hover:text-primary transition">Insurance</Link></li>
+            <li><Link to="/gallery" className="hover:text-primary transition">Gallery</Link></li>
+            <li><Link to="/contact" className="hover:text-primary transition">Contact</Link></li>
           </ul>
         </div>
 
         <div className="md:col-span-2">
-          <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider text-foreground/80">
-            Departments
-          </h4>
+          <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider text-foreground/80">Departments</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             {DEPARTMENTS.slice(0, 6).map((d) => (
               <li key={d.slug}>
-                <Link
-                  to="/services/$slug"
-                  params={{ slug: d.slug }}
-                  className="hover:text-primary transition"
-                >
-                  {d.name}
-                </Link>
+                <Link to="/services/$slug" params={{ slug: d.slug }} className="hover:text-primary transition">{d.name}</Link>
               </li>
             ))}
           </ul>
         </div>
 
         <div className="md:col-span-3 space-y-3 text-sm">
-          <h4 className="font-semibold mb-1 text-sm uppercase tracking-wider text-foreground/80">
-            Reach Us
-          </h4>
-          <p className="flex gap-2 text-muted-foreground">
-            <MapPin className="size-4 mt-0.5 text-primary shrink-0" />
-            {SITE.address}
-          </p>
-          <p className="flex gap-2 text-muted-foreground">
-            <Phone className="size-4 mt-0.5 text-primary shrink-0" />
-            {SITE.phone}
-          </p>
-          <p className="flex gap-2 text-muted-foreground">
-            <Mail className="size-4 mt-0.5 text-primary shrink-0" />
-            {SITE.email}
-          </p>
+          <h4 className="font-semibold mb-1 text-sm uppercase tracking-wider text-foreground/80">Reach Us</h4>
+          <p className="flex gap-2 text-muted-foreground"><MapPin className="size-4 mt-0.5 text-primary shrink-0" />{SITE.address}</p>
+          <p className="flex gap-2 text-muted-foreground"><Phone className="size-4 mt-0.5 text-primary shrink-0" />{SITE.phone}</p>
+          <p className="flex gap-2 text-muted-foreground"><Mail className="size-4 mt-0.5 text-primary shrink-0" />{SITE.email}</p>
         </div>
       </div>
       <div className="border-t">
         <div className="container-px mx-auto max-w-7xl py-5 text-xs text-muted-foreground flex flex-wrap items-center justify-between gap-2">
-          <span>
-            © {new Date().getFullYear()} Medstar Multispeciality Hospital and ICU. All rights
-            reserved.
-          </span>
+          <span>© {new Date().getFullYear()} Medstar Multispeciality Hospital and ICU. All rights reserved.</span>
           <span>Designed with care for our patients.</span>
         </div>
       </div>

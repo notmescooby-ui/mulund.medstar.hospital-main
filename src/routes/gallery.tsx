@@ -71,36 +71,35 @@ export const Route = createFileRoute("/gallery")({
 function GalleryPage() {
   return (
     <div className="overflow-x-hidden">
-      <section className="container-px mx-auto max-w-7xl py-20 lg:py-28">
-        <Reveal className="max-w-3xl space-y-6 mx-auto text-center">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-accent-foreground text-xs font-semibold">
+      <section className="bg-hero">
+        <div className="container-px mx-auto max-w-7xl py-16 lg:py-24 text-center space-y-5">
+          <span className="eyebrow">
             Gallery
           </span>
-          <div className="space-y-3">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Our Hospital Gallery</h1>
-            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
-              Discover Medstar Multispeciality Hospital's facilities, ICU care areas, patient rooms,
-              clinical spaces, and support infrastructure. Our gallery reflects a clean, modern
-              healthcare environment designed for comfort and medical excellence.
-            </p>
-          </div>
-        </Reveal>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display text-navy tracking-tight leading-tight">Our Hospital Gallery</h1>
+          <p className="max-w-2xl mx-auto text-muted-foreground text-base leading-relaxed">
+            Discover Medstar Multispeciality Hospital's facilities, ICU care areas, patient rooms,
+            clinical spaces, and support infrastructure. Our gallery reflects a clean, modern
+            healthcare environment designed for comfort and medical excellence.
+          </p>
+        </div>
       </section>
 
-      <section className="container-px mx-auto max-w-7xl pb-20">
+      <section className="container-px mx-auto max-w-7xl py-16">
         <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
           {images.map((item) => (
-            <div
-              key={item.alt}
-              className="break-inside-avoid overflow-hidden rounded-3xl shadow-soft bg-white"
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                loading="lazy"
-                className="block max-w-full h-auto object-contain"
-              />
-            </div>
+            <Reveal key={item.alt}>
+              <div
+                className="break-inside-avoid overflow-hidden rounded-3xl border shadow-card bg-white p-2 hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  className="block w-full h-auto object-cover rounded-2xl"
+                />
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
